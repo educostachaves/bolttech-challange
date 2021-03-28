@@ -23,10 +23,9 @@ describe('UsersService', () => {
   it('should return all users', async () => {
     const testUser: UserEntity = {
       id: 1,
-      username: 'johndoe',
-      displayName: 'John Doe',
+      name: 'John Doe',
+      password: 'YAq4BM6MNtTmmtw6',
       email: 'johndoe@johndoe.com',
-      birthDate: new Date('1990-04-10'),
       createdAt: new Date(),
       updatedAt: new Date(),
     };

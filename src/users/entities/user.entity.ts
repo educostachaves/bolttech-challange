@@ -12,23 +12,11 @@ export class UserEntity {
 
   @ApiProperty()
   @Column({ unique: true })
-  username: string;
+  name: string;
 
   @ApiProperty()
   @Column()
-  displayName: string;
-
-  @ApiProperty()
-  @Column({ nullable: true })
-  typeDocument?: string;
-
-  @ApiProperty()
-  @Column({ nullable: true })
-  document?: string;
-
-  @ApiProperty()
-  @Column({ type: 'date', nullable: true })
-  birthDate?: Date;
+  password: string;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;

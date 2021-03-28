@@ -15,6 +15,9 @@ COPY package.json yarn.lock ./
 RUN yarn
 
 COPY . .
+
+RUN typeorm migration:run
+
 RUN chown -R node:node /home/node/app
 
 USER node

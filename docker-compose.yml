@@ -25,7 +25,6 @@ services:
     command: "yarn start:dev"
 
   postgres:
-    container_name: ${POSTGRES_HOST}
     image: postgres:latest
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
@@ -39,7 +38,6 @@ services:
       - mynet
 
   pgadmin:
-    container_name: pgadmin
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
