@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import * as bcrypt from 'bcrypt';
+import { Column, Entity, BeforeInsert, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity('user')
 export class UserEntity {
@@ -27,4 +28,9 @@ export class UserEntity {
 
   @UpdateDateColumn({ type: 'timestamp', nullable: true })
   updatedAt?: Date;
+
+  @BeforeInsert()
+  async hashPassword() {
+    this.password = await bcrypt.hash(this.password, Number(process.env.HASH_SALT));
+  }
 }

@@ -8,4 +8,9 @@ export class UsersService extends TypeOrmCrudService<UserEntity> {
   constructor(private readonly userRepository: UserRepository) {
     super(userRepository);
   }
+
+  save(user: UserEntity): Promise<UserEntity> {
+    console.log(user);
+    return this.userRepository.save(user);
+  }
 }
