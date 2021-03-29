@@ -3,12 +3,14 @@ import { UserEntity } from '../../users/entities/user.entity';
 import {
   Column,
   Entity,
-  OneToOne,
+  ManyToOne,
   JoinColumn,
+  OneToMany,
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { TaskEntity } from '../../tasks/entities/task.entity';
 
 @Entity('project')
 export class ProjectEntity {
@@ -26,7 +28,15 @@ export class ProjectEntity {
   updatedAt?: Date;
 
   @ApiProperty({ type: 'number' })
-  @OneToOne(() => UserEntity)
-  @JoinColumn()
+  @ManyToOne(
+    () => UserEntity,
+    user => user.projects,
+  )
   user: UserEntity;
+
+  @OneToMany(
+    () => TaskEntity,
+    task => task.project,
+  )
+  tasks: TaskEntity[];
 }
