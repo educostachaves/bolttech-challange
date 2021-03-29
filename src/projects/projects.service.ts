@@ -8,4 +8,13 @@ export class ProjectsService extends TypeOrmCrudService<ProjectEntity> {
   constructor(private readonly ProjectRepository: ProjectRepository) {
     super(ProjectRepository);
   }
+
+  async findAllWithTasks(userId: number) {
+    const projects: ProjectEntity[] = await this.ProjectRepository.find({
+      where: { user: userId },
+      relations: ['tasks'],
+    });
+
+    return projects;
+  }
 }
