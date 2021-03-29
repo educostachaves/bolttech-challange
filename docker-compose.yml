@@ -24,6 +24,25 @@ services:
       - mynet
     command: "yarn start:dev"
 
+  front:
+    build:
+      context: ./front
+      dockerfile: ./docker/Dockerfile
+      args:
+        - NODE_ENV=${NODE_ENV}
+        - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL}
+    volumes:
+      - ./front:/app
+      - /app/node_modules
+    env_file:
+      - ./.env
+    ports:
+      - 6001:3000
+    depends_on:
+      - app
+    networks:
+      - mynet
+
   postgres:
     image: postgres:latest
     environment:
