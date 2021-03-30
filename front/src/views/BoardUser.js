@@ -34,7 +34,7 @@ const BoardUser = () => {
 
       <section className="row">
         {projects && projects.map((project) =>
-          <Project key={project.id} data={project} />
+          <Project key={project.id} data={project} setProjects={setProjects}/>
         )}
         <ProjectForm setProjects={setProjects} />
       </section>

@@ -49,8 +49,6 @@ const ProjectForm = ({ setProjects }) => {
         setSuccessful(false);
       }
     );
-
-
   };
 
   return (
