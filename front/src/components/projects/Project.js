@@ -23,12 +23,28 @@ const Project = ({ data, setProjects }) => {
     }
   };
 
+  const handleEdit = (e) => {
+    e.preventDefault();
+
+    const newTitle = window.prompt("Type a new name for this project");
+
+    ProjectService.editProject(id, newTitle).then(
+      () => {
+        ProjectService.getProjectsByUser().then(
+          (response) => {
+            setProjects(response.data);
+          });
+      }
+    );
+  };
+
   return (
     <div className="col-sm-4 mb-4">
       <div className="card">
         <h5 className="card-header">{name}
           <small>
             (<a onClick={handleDelete} href="#">delete</a>)
+            (<a onClick={handleEdit} href="#">edit</a>)
           </small>
         </h5>
         <Tasks data={tasks} setProjects={setProjects} />

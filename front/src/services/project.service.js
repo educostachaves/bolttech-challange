@@ -13,6 +13,12 @@ const deleteProject = (id) => {
   return axios.delete(API_URL + "projects/" + id, { headers: authHeader() });
 };
 
+const editProject = (id, name) => {
+  return axios.put(API_URL + "projects/" + id, {
+    name,
+  }, { headers: authHeader() });
+};
+
 const saveProject = (name) => {
   const user = UserService.getCurrentUser();
   return axios.post(API_URL + "projects", {
@@ -25,5 +31,6 @@ const saveProject = (name) => {
 export default {
   getProjectsByUser,
   deleteProject,
+  editProject,
   saveProject,
 };
