@@ -1,17 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Task from "./Task";
 
 const Tasks = ({ data }) => {
-  const tasks = data;
-  console.log(tasks);
+  const [tasks, setTasks] = useState(data);
   const doneList = (tasks ? tasks.filter((a) => a.done ) : []);
   const todoList = (tasks ? tasks.filter((a) => !a.done ) : []);
   return (
     <div className="card-body">
       <h5>To Do</h5>
       <ul className="list-group list-group-flush">
-      { todoList && todoList.map((task) => (
+      {todoList && todoList.map((task) => (
         <Task key={task.id} data={task} />
       ))}
       </ul>

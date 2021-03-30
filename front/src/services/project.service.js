@@ -9,7 +9,21 @@ const getProjectsByUser = () => {
   return axios.get(API_URL + "projects/withTasks/" + user.id, { headers: authHeader() });
 };
 
+const deleteProject = (id) => {
+  return axios.delete(API_URL + "projects/" + id, { headers: authHeader() });
+};
+
+const saveProject = (name) => {
+  const user = UserService.getCurrentUser();
+  return axios.post(API_URL + "projects", {
+    name,
+    user: user.id,
+  });
+};
+
 // eslint-disable-next-line
 export default {
   getProjectsByUser,
+  deleteProject,
+  saveProject,
 };

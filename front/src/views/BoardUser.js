@@ -36,7 +36,7 @@ const BoardUser = () => {
         {projects && projects.map((project) =>
           <Project key={project.id} data={project} />
         )}
-        <ProjectForm />
+        <ProjectForm setProjects={setProjects} />
       </section>
     </div>
   );
