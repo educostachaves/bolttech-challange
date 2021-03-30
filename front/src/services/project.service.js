@@ -18,7 +18,7 @@ const saveProject = (name) => {
   return axios.post(API_URL + "projects", {
     name,
     user: user.id,
-  });
+  }, { headers: authHeader() });
 };
 
 // eslint-disable-next-line

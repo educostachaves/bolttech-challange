@@ -31,8 +31,8 @@ const Project = ({ data, setProjects }) => {
             (<a onClick={handleDelete} href="#">delete</a>)
           </small>
         </h5>
-        <Tasks data={tasks} />
-        <TaskForm />
+        <Tasks data={tasks} setProjects={setProjects} />
+        <TaskForm projectId={id} setProjects={setProjects} />
       </div>
     </div>
   );
