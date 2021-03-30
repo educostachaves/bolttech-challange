@@ -7,11 +7,10 @@ const deleteTask = (id) => {
   return axios.delete(API_URL + "tasks/" + id, { headers: authHeader() });
 };
 
-const editTask = (id, name, projectId, done) => {
+const editTask = (id, done) => {
+  console.log(done);
   return axios.put(API_URL + "tasks/" + id, {
-    name,
     done,
-    project: projectId,
   }, { headers: authHeader() });
 };
 

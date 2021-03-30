@@ -12,6 +12,9 @@ export class ProjectsService extends TypeOrmCrudService<ProjectEntity> {
   async findAllWithTasks(userId: number) {
     const projects: ProjectEntity[] = await this.ProjectRepository.find({
       where: { user: userId },
+      order: {
+        createdAt: 'ASC',
+      },
       relations: ['tasks'],
     });
 

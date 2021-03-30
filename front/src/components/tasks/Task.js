@@ -6,6 +6,19 @@ import ProjectService from "../../services/project.service";
 const Task = ({ data, setProjects }) => {
   const { id, name, done } = data;
 
+  const handleDone = (e) => {
+    e.preventDefault();
+
+    TaskService.editTask(id, e.target.checked).then(
+      () => {
+        ProjectService.getProjectsByUser().then(
+          (response) => {
+            setProjects(response.data);
+          });
+      }
+    );
+  }
+
   const handleDelete = (e) => {
     e.preventDefault();
 
@@ -24,7 +37,7 @@ const Task = ({ data, setProjects }) => {
   return (
     <li className="list-group-item">
       <div className="form-check">
-        <input className="form-check-input" type="checkbox" value="true" id="defaultCheck1" checked={done ?? 'checked'} />
+        <input type="checkbox" onClick={handleDone} className="form-check-input"  value="true" id="defaultCheck1" checked={done ?? 'checked'} />
         <label className="form-check-label" for="defaultCheck1">
           &nbsp; {name}
           {!done ? (
